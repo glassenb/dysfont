@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoDy — Vowel Dyslexia Fonts</title>
+    <style>
+        @font-face { font-family: 'VoDy Arial';  src: url('fonts/VoDy_Arial.ttf')  format('truetype'); }
+        @font-face { font-family: 'VoDy Small';   src: url('fonts/VoDy_Small.ttf')  format('truetype'); }
+        @font-face { font-family: 'VoDy Big';     src: url('fonts/VoDy_Big.ttf')    format('truetype'); }
+        @font-face { font-family: 'VoDy Space';   src: url('fonts/VoDy_Space.ttf')  format('truetype'); }
+        @font-face { font-family: 'VoDy High';    src: url('fonts/VoDy_High.ttf')   format('truetype'); }
+        @font-face { font-family: 'VoDy Shaped';  src: url('fonts/VoDy_Shaped.ttf') format('truetype'); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f0f0f0;
+            color: #222;
+            padding: 2rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .controls {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .controls label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .controls select, .controls input[type=range] {
+            font-size: 0.95rem;
+            padding: 0.4rem 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+        }
+
+        .controls select { min-width: 200px; }
+
+        .controls .size-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .controls .size-group span {
+            font-size: 0.8rem;
+            color: #888;
+            min-width: 3.5rem;
+        }
+
+        .font-desc {
+            background: #eef6ff;
+            border-left: 3px solid #3b82f6;
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .panel h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #888;
+            margin-bottom: 1rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .sample {
+            line-height: 1.7;
+        }
+
+        #vody-panel .sample {
+            font-family: 'VoDy Small', Arial, sans-serif;
+        }
+
+        #regular-panel .sample {
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        .section {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #888;
+            margin-bottom: 1rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .alphabet {
+            font-size: 2rem;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+
+        .alphabet .vowel { color: #d35400; }
+
+        .user-input {
+            width: 100%;
+            min-height: 120px;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: vertical;
+        }
+
+        .user-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .passage {
+            line-height: 1.7;
+        }
+
+        .passage p { margin-bottom: 1em; }
+        .passage p:last-child { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>VoDy</h1>
+    <p>Vowel-differentiated fonts — a reading aid for vowel-related dyslexia.</p>
+</header>
+
+<div class="controls">
+    <label for="font-select">Font:</label>
+    <select id="font-select">
+        <option value="VoDy Arial"    data-desc="Arial base. Vowels scaled to 50% with proportional width. The original VoDy — a dramatic reduction that makes vowels clearly subordinate to consonants.">VoDy Arial</option>
+        <option value="VoDy Small"    data-desc="Inter base. Vowels scaled to 50% with proportional width. Same dramatic shrink as VoDy Arial but on the clean, modern Inter typeface." selected>VoDy Small</option>
+        <option value="VoDy Big"      data-desc="Inter base. Vowels enlarged to 120%. Vowels become the visual anchor — bigger, bolder, easier to identify. The opposite strategy: make vowels impossible to miss.">VoDy Big</option>
+        <option value="VoDy Space"    data-desc="Inter base. 20% extra spacing around each vowel. Vowels stay the same size but breathe more, creating visual separation that helps the eye distinguish them from consonants.">VoDy Space</option>
+        <option value="VoDy High"     data-desc="Inter base. Vowels 5% smaller and top-aligned to the ascender line. A subtle size shift plus vertical displacement — vowels float slightly higher, giving them a distinct visual lane.">VoDy High</option>
+        <option value="VoDy Shaped"   data-desc="Inter base. Each vowel has a unique treatment — A is wider, E has a more open counter, I is thicker, O is heavier weight, U has a deeper curve. No two vowels feel the same.">VoDy Shaped</option>
+    </select>
+    <div class="size-group">
+        <label for="size-slider">Size:</label>
+        <input type="range" id="size-slider" min="12" max="48" value="20">
+        <span id="size-label">20px</span>
+    </div>
+</div>
+
+<div class="font-desc" id="font-desc">
+    Inter base. Vowels scaled to 50% with proportional width. Same dramatic shrink as VoDy Arial but on the clean, modern Inter typeface.
+</div>
+
+<div class="comparison">
+    <div class="panel" id="vody-panel">
+        <h2 id="vody-label">VoDy Small</h2>
+        <div class="sample">
+            The quick brown fox jumps over the lazy dog. Education is the most powerful weapon which you can use to change the world. Reading gives us someplace to go when we have to stay where we are.
+        </div>
+    </div>
+    <div class="panel" id="regular-panel">
+        <h2>Regular Inter</h2>
+        <div class="sample">
+            The quick brown fox jumps over the lazy dog. Education is the most powerful weapon which you can use to change the world. Reading gives us someplace to go when we have to stay where we are.
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Alphabet — <span style="color: #d35400;">vowels in orange</span></h2>
+    <div class="alphabet" id="alphabet">
+        <span class="vowel">A</span> B C D <span class="vowel">E</span> F G H <span class="vowel">I</span> J K L M N <span class="vowel">O</span> P Q R S T <span class="vowel">U</span> V W X Y Z<br>
+        <span class="vowel">a</span> b c d <span class="vowel">e</span> f g h <span class="vowel">i</span> j k l m n <span class="vowel">o</span> p q r s t <span class="vowel">u</span> v w x y z<br>
+        0 1 2 3 4 5 6 7 8 9
+    </div>
+</div>
+
+<div class="section">
+    <h2>Reading passage</h2>
+    <div class="comparison" style="margin-bottom: 0;">
+        <div id="passage-vody" style="padding-right: 0.75rem;">
+            <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 1rem; font-family: Arial, sans-serif;" id="passage-vody-label">VoDy Small</h2>
+            <div class="passage">
+                <p>Once upon a time, in a quiet little village nestled between rolling green hills, there lived a curious young girl named Eleanor. Every morning, she would wake before the sun rose and tiptoe outside to explore the meadows.</p>
+                <p>The flowers bloomed in brilliant hues of orange, purple, and blue. Butterflies danced above the dewy grass, and the air smelled of honeysuckle and adventure. Eleanor believed that if she looked closely enough, she could discover something extraordinary hidden in the ordinary.</p>
+                <p>"Today is the day," she whispered to herself, adjusting her boots. "Today I will find the ancient oak that Grandmother told me about." And with that, she set off into the unknown, her heart full of courage and wonder.</p>
+            </div>
+        </div>
+        <div id="passage-regular" style="padding-left: 0.75rem; border-left: 1px solid #eee;">
+            <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 1rem; font-family: Arial, sans-serif;">Regular Inter</h2>
+            <div class="passage" style="font-family: 'Inter', Arial, sans-serif;">
+                <p>Once upon a time, in a quiet little village nestled between rolling green hills, there lived a curious young girl named Eleanor. Every morning, she would wake before the sun rose and tiptoe outside to explore the meadows.</p>
+                <p>The flowers bloomed in brilliant hues of orange, purple, and blue. Butterflies danced above the dewy grass, and the air smelled of honeysuckle and adventure. Eleanor believed that if she looked closely enough, she could discover something extraordinary hidden in the ordinary.</p>
+                <p>"Today is the day," she whispered to herself, adjusting her boots. "Today I will find the ancient oak that Grandmother told me about." And with that, she set off into the unknown, her heart full of courage and wonder.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Try it yourself</h2>
+    <textarea class="user-input" id="user-input" placeholder="Type here to see your own text in the selected VoDy font..."></textarea>
+</div>
+
+<script>
+    const fontSelect = document.getElementById('font-select');
+    const sizeSlider = document.getElementById('size-slider');
+    const sizeLabel = document.getElementById('size-label');
+    const fontDesc = document.getElementById('font-desc');
+    const vodyLabel = document.getElementById('vody-label');
+    const passageVodyLabel = document.getElementById('passage-vody-label');
+
+    // All elements that should use the selected VoDy font
+    function getVodyElements() {
+        return [
+            ...document.querySelectorAll('#vody-panel .sample'),
+            document.getElementById('alphabet'),
+            document.getElementById('passage-vody'),
+            document.getElementById('user-input'),
+        ];
+    }
+
+    function updateFont() {
+        const fontName = fontSelect.value;
+        const size = sizeSlider.value + 'px';
+        const desc = fontSelect.selectedOptions[0].dataset.desc;
+
+        fontDesc.textContent = desc;
+        vodyLabel.textContent = fontName;
+        passageVodyLabel.textContent = fontName;
+
+        getVodyElements().forEach(el => {
+            el.style.fontFamily = "'" + fontName + "', 'Inter', Arial, sans-serif";
+            el.style.fontSize = size;
+        });
+
+        // Also update the regular panel size to match
+        document.querySelectorAll('#regular-panel .sample').forEach(el => {
+            el.style.fontSize = size;
+        });
+        document.querySelector('#passage-regular .passage').style.fontSize = size;
+
+        sizeLabel.textContent = size;
+    }
+
+    fontSelect.addEventListener('change', updateFont);
+    sizeSlider.addEventListener('input', updateFont);
+
+    // Initialize
+    updateFont();
+</script>
+
+</body>
+</html>
