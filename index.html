@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoDy — Vowel Dyslexia Fonts</title>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        if (localStorage.getItem('cookieConsent') === 'accepted') {
+            gtag('consent', 'update', { 'analytics_storage': 'granted' });
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-YJP0N117E5');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJP0N117E5"></script>
     <style>
         @font-face { font-family: 'VoDy Arial';  src: url('fonts/VoDy_Arial.ttf')  format('truetype'); }
         @font-face { font-family: 'VoDy Small';   src: url('fonts/VoDy_Small.ttf')  format('truetype'); }
@@ -12,15 +23,58 @@
         @font-face { font-family: 'VoDy High';    src: url('fonts/VoDy_High.ttf')   format('truetype'); }
         @font-face { font-family: 'VoDy Shaped';  src: url('fonts/VoDy_Shaped.ttf') format('truetype'); }
 
+        :root {
+            --bg: #f0f0f0;
+            --text: #222;
+            --text-muted: #666;
+            --text-faint: #888;
+            --text-faintest: #999;
+            --card-bg: #fff;
+            --card-border: #ddd;
+            --control-bg: #fff;
+            --control-border: #ccc;
+            --input-bg: #fff;
+            --desc-bg: #eef6ff;
+            --desc-border: #3b82f6;
+            --desc-text: #1e40af;
+            --dl-bg: #f8f8f8;
+            --dl-hover-bg: #eef6ff;
+            --divider: #eee;
+            --vowel-color: #d35400;
+            --accent: #3b82f6;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1a1a2e;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --text-faint: #808080;
+            --text-faintest: #666;
+            --card-bg: #16213e;
+            --card-border: #2a2a4a;
+            --control-bg: #1a1a3e;
+            --control-border: #3a3a5a;
+            --input-bg: #16213e;
+            --desc-bg: #1a2744;
+            --desc-border: #3b82f6;
+            --desc-text: #7cb3ff;
+            --dl-bg: #1a1a3e;
+            --dl-hover-bg: #1a2744;
+            --divider: #2a2a4a;
+            --vowel-color: #e67e22;
+            --accent: #5b9cf6;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', Arial, sans-serif;
-            background: #f0f0f0;
-            color: #222;
+            background: var(--bg);
+            color: var(--text);
             padding: 2rem;
             max-width: 960px;
             margin: 0 auto;
+            transition: background 0.2s, color 0.2s;
         }
 
         header {
@@ -33,13 +87,13 @@
         }
 
         header p {
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
         .controls {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
             padding: 1.25rem;
             margin-bottom: 1.5rem;
@@ -52,15 +106,16 @@
         .controls label {
             font-size: 0.85rem;
             font-weight: 600;
-            color: #555;
+            color: var(--text-muted);
         }
 
         .controls select, .controls input[type=range] {
             font-size: 0.95rem;
             padding: 0.4rem 0.6rem;
-            border: 1px solid #ccc;
+            border: 1px solid var(--control-border);
             border-radius: 4px;
-            background: #fff;
+            background: var(--control-bg);
+            color: var(--text);
         }
 
         .controls select { min-width: 200px; }
@@ -73,18 +128,18 @@
 
         .controls .size-group span {
             font-size: 0.8rem;
-            color: #888;
+            color: var(--text-faint);
             min-width: 3.5rem;
         }
 
         .font-desc {
-            background: #eef6ff;
-            border-left: 3px solid #3b82f6;
+            background: var(--desc-bg);
+            border-left: 3px solid var(--desc-border);
             padding: 0.75rem 1rem;
             border-radius: 0 6px 6px 0;
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
-            color: #1e40af;
+            color: var(--desc-text);
         }
 
         .comparison {
@@ -95,8 +150,8 @@
         }
 
         .panel {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
             padding: 1.5rem;
         }
@@ -105,7 +160,7 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #888;
+            color: var(--text-faint);
             margin-bottom: 1rem;
             font-family: Arial, sans-serif;
         }
@@ -123,8 +178,8 @@
         }
 
         .section {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -134,7 +189,7 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #888;
+            color: var(--text-faint);
             margin-bottom: 1rem;
             font-family: Arial, sans-serif;
         }
@@ -145,7 +200,7 @@
             letter-spacing: 0.05em;
         }
 
-        .alphabet .vowel { color: #d35400; }
+        .alphabet .vowel { color: var(--vowel-color); }
 
         .user-input {
             width: 100%;
@@ -153,15 +208,17 @@
             font-size: 1.25rem;
             line-height: 1.7;
             padding: 1rem;
-            border: 1px solid #ccc;
+            border: 1px solid var(--control-border);
             border-radius: 6px;
             resize: vertical;
+            background: var(--input-bg);
+            color: var(--text);
         }
 
         .user-input:focus {
             outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
         }
 
         .passage {
@@ -170,13 +227,70 @@
 
         .passage p { margin-bottom: 1em; }
         .passage p:last-child { margin-bottom: 0; }
+
+        .downloads {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .downloads a {
+            display: block;
+            padding: 0.65rem 1rem;
+            background: var(--dl-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.15s;
+        }
+
+        .downloads a:hover {
+            background: var(--dl-hover-bg);
+            border-color: var(--accent);
+        }
+
+        .downloads a .dl-name {
+            font-weight: 600;
+        }
+
+        .downloads a .dl-size {
+            font-size: 0.75rem;
+            color: var(--text-faint);
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.8rem;
+            color: var(--text-faintest);
+        }
+
+        .theme-toggle {
+            background: var(--control-bg);
+            border: 1px solid var(--control-border);
+            border-radius: 4px;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.85rem;
+            color: var(--text);
+            cursor: pointer;
+            margin-left: auto;
+            transition: background 0.15s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--dl-hover-bg);
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>VoDy</h1>
-    <p>Vowel-differentiated fonts — a reading aid for vowel-related dyslexia.</p>
+    <p>Vowel-differentiated fonts — a reading aid for phonological dyslexia.</p>
+    <p style="font-size: 0.8rem; color: var(--text-faintest); margin-top: 0.25rem;">Built from an iPhone with <a href="https://www.mobilevibe.com" style="color: var(--accent); text-decoration: none;">MobileVibe</a></p>
 </header>
 
 <div class="controls">
@@ -194,6 +308,7 @@
         <input type="range" id="size-slider" min="12" max="48" value="20">
         <span id="size-label">20px</span>
     </div>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">Dark</button>
 </div>
 
 <div class="font-desc" id="font-desc">
@@ -216,7 +331,7 @@
 </div>
 
 <div class="section">
-    <h2>Alphabet — <span style="color: #d35400;">vowels in orange</span></h2>
+    <h2>Alphabet — <span style="color: var(--vowel-color);">vowels in orange</span></h2>
     <div class="alphabet" id="alphabet">
         <span class="vowel">A</span> B C D <span class="vowel">E</span> F G H <span class="vowel">I</span> J K L M N <span class="vowel">O</span> P Q R S T <span class="vowel">U</span> V W X Y Z<br>
         <span class="vowel">a</span> b c d <span class="vowel">e</span> f g h <span class="vowel">i</span> j k l m n <span class="vowel">o</span> p q r s t <span class="vowel">u</span> v w x y z<br>
@@ -228,15 +343,15 @@
     <h2>Reading passage</h2>
     <div class="comparison" style="margin-bottom: 0;">
         <div id="passage-vody" style="padding-right: 0.75rem;">
-            <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 1rem; font-family: Arial, sans-serif;" id="passage-vody-label">VoDy Small</h2>
+            <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); margin-bottom: 1rem; font-family: Arial, sans-serif;" id="passage-vody-label">VoDy Small</h2>
             <div class="passage">
                 <p>Once upon a time, in a quiet little village nestled between rolling green hills, there lived a curious young girl named Eleanor. Every morning, she would wake before the sun rose and tiptoe outside to explore the meadows.</p>
                 <p>The flowers bloomed in brilliant hues of orange, purple, and blue. Butterflies danced above the dewy grass, and the air smelled of honeysuckle and adventure. Eleanor believed that if she looked closely enough, she could discover something extraordinary hidden in the ordinary.</p>
                 <p>"Today is the day," she whispered to herself, adjusting her boots. "Today I will find the ancient oak that Grandmother told me about." And with that, she set off into the unknown, her heart full of courage and wonder.</p>
             </div>
         </div>
-        <div id="passage-regular" style="padding-left: 0.75rem; border-left: 1px solid #eee;">
-            <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 1rem; font-family: Arial, sans-serif;">Regular Inter</h2>
+        <div id="passage-regular" style="padding-left: 0.75rem; border-left: 1px solid var(--divider);">
+            <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); margin-bottom: 1rem; font-family: Arial, sans-serif;">Regular Inter</h2>
             <div class="passage" style="font-family: 'Inter', Arial, sans-serif;">
                 <p>Once upon a time, in a quiet little village nestled between rolling green hills, there lived a curious young girl named Eleanor. Every morning, she would wake before the sun rose and tiptoe outside to explore the meadows.</p>
                 <p>The flowers bloomed in brilliant hues of orange, purple, and blue. Butterflies danced above the dewy grass, and the air smelled of honeysuckle and adventure. Eleanor believed that if she looked closely enough, she could discover something extraordinary hidden in the ordinary.</p>
@@ -250,6 +365,40 @@
     <h2>Try it yourself</h2>
     <textarea class="user-input" id="user-input" placeholder="Type here to see your own text in the selected VoDy font..."></textarea>
 </div>
+
+<div class="section">
+    <h2>Download fonts</h2>
+    <div class="downloads">
+        <a href="fonts/VoDy_Arial.ttf" download>
+            <span class="dl-name">VoDy Arial</span><br>
+            <span class="dl-size">Arial base &middot; vowels 50% smaller</span>
+        </a>
+        <a href="fonts/VoDy_Small.ttf" download>
+            <span class="dl-name">VoDy Small</span><br>
+            <span class="dl-size">Inter base &middot; vowels 50% smaller</span>
+        </a>
+        <a href="fonts/VoDy_Big.ttf" download>
+            <span class="dl-name">VoDy Big</span><br>
+            <span class="dl-size">Inter base &middot; vowels 20% bigger</span>
+        </a>
+        <a href="fonts/VoDy_Space.ttf" download>
+            <span class="dl-name">VoDy Space</span><br>
+            <span class="dl-size">Inter base &middot; 20% extra vowel spacing</span>
+        </a>
+        <a href="fonts/VoDy_High.ttf" download>
+            <span class="dl-name">VoDy High</span><br>
+            <span class="dl-size">Inter base &middot; vowels top-aligned</span>
+        </a>
+        <a href="fonts/VoDy_Shaped.ttf" download>
+            <span class="dl-name">VoDy Shaped</span><br>
+            <span class="dl-size">Inter base &middot; unique per-vowel treatments</span>
+        </a>
+    </div>
+</div>
+
+<footer>
+    VoDy font family by Sam Glassenberg / Brain Power Tools LLC
+</footer>
 
 <script>
     const fontSelect = document.getElementById('font-select');
@@ -297,6 +446,27 @@
 
     // Initialize
     updateFont();
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('vodyTheme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = 'Light';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggle.textContent = 'Dark';
+            localStorage.setItem('vodyTheme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = 'Light';
+            localStorage.setItem('vodyTheme', 'dark');
+        }
+    });
 </script>
 
 </body>

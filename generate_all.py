@@ -1,5 +1,5 @@
 """
-Generate the full VoDy font family — vowel-differentiated fonts for dyslexia.
+Generate the full VoDy font family — vowel-differentiated fonts for phonological dyslexia.
 
 Each variant applies a different visual treatment to vowel glyphs.
 """
@@ -28,18 +28,30 @@ def get_vowel_glyphs(font):
 
 
 def rename_font(font, new_name):
-    """Replace the font family name in the name table."""
+    """Replace the font family name and add credit metadata."""
     name_table = font["name"]
     for record in name_table.names:
         try:
             s = record.toUnicode()
         except Exception:
             continue
-        # Replace any existing family name references
         for old in ["Inter", "Arial"]:
             if old in s:
                 s = s.replace(old, new_name)
         record.string = s
+
+    # Add/overwrite credit fields (nameID reference):
+    #   9  = Designer
+    #   11 = Vendor URL
+    #   13 = License Description
+    credits = {
+        9:  "Sam Glassenberg / Brain Power Tools LLC",
+        13: "VoDy font family by Sam Glassenberg / Brain Power Tools LLC. "
+            "Vowel-differentiated fonts for phonological dyslexia.",
+    }
+    for name_id, value in credits.items():
+        name_table.setName(value, name_id, 3, 1, 0x0409)  # Windows, Unicode BMP, English
+        name_table.setName(value, name_id, 1, 0, 0)        # Mac, Roman, English
 
 
 def scale_glyph(font, glyph_name, sx, sy, anchor_x="origin", anchor_y="baseline"):
@@ -210,11 +222,12 @@ def deepen_curve(font, glyph_name, factor):
 
 
 def widen_glyph(font, glyph_name, factor):
-    """Widen a glyph horizontally by the given factor (1.2 = 20% wider)."""
+    """Widen a glyph horizontally by the given factor (1.2 = 20% wider), centered."""
     glyf_table = font["glyf"]
     glyph = glyf_table[glyph_name]
     hmtx = font["hmtx"]
     width, lsb = hmtx[glyph_name]
+    new_width = int(round(width * factor))
 
     if glyph.numberOfContours <= 0:
         if glyph.isComposite():
@@ -226,18 +239,32 @@ def widen_glyph(font, glyph_name, factor):
                 if hasattr(comp, "x"):
                     comp.x = int(comp.x * factor)
                 comp.flags |= 0x0008
-            hmtx[glyph_name] = (int(round(width * factor)), int(round(lsb * factor)))
+            hmtx[glyph_name] = (new_width, int(round(lsb * factor)))
         return
 
     coords = glyph.coordinates
-    cx = width / 2
+    # Scale around the glyph's own bounding box center
+    xs = [x for x, y in coords]
+    glyph_cx = (min(xs) + max(xs)) / 2
     new_coords = []
     for x, y in coords:
-        new_x = cx + (x - cx) * factor
+        new_x = glyph_cx + (x - glyph_cx) * factor
         new_coords.append((int(round(new_x)), y))
     glyph.coordinates = type(coords)(new_coords)
     glyph.recalcBounds(glyf_table)
-    hmtx[glyph_name] = (int(round(width * factor)), glyph.xMin)
+
+    # Re-center the widened glyph in the new advance width
+    # by shifting so the glyph sits with equal side bearings
+    glyph_w = glyph.xMax - glyph.xMin
+    target_lsb = (new_width - glyph_w) // 2
+    shift = target_lsb - glyph.xMin
+    if shift != 0:
+        coords = glyph.coordinates
+        new_coords = [(x + shift, y) for x, y in coords]
+        glyph.coordinates = type(coords)(new_coords)
+        glyph.recalcBounds(glyf_table)
+
+    hmtx[glyph_name] = (new_width, glyph.xMin)
 
 
 def open_counter(font, glyph_name, amount):
